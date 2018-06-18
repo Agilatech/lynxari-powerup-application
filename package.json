@@ -1,0 +1,13 @@
+{
+  "name": "@agilatech/lynxari-powerup-application",
+  "version": "1.0.0",
+  "description": "Set initial power state for devices upon starting",
+  "main": "loader.js",
+  "keywords": [
+    "lynxari",
+    "devices",
+    "power"
+  ],
+  "author": "scotty <scott@agilatech.com> (http://agilatech.com)",
+  "license": "MIT"
+}
