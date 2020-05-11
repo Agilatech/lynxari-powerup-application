@@ -13,17 +13,21 @@ module.exports = class Power {
 
 	startObserver() {
 		const deviceQuery = this.server.where({name:this.device.name});
-		const self = this;
 
-		this.server.observe([deviceQuery], function(dev) {
+		this.server.observe([deviceQuery], (dev) => {
 
-			if (self.device.state) {
+			if (this.device.state) {
 
-				const powerCommand = (self.device.state == "on") ? 'turn-on' : 'turn-off';
+				const powerCommand = (this.device.state == "on") ? 'turn-on' : 'turn-off';
 
 				// Set the powerup state 
-	  		dev.call(powerCommand, function() {
-			    self.server.info(self.device.name + " initial power state set to " + self.device.state);
+	  		dev.call(powerCommand, (err) => {
+					if (!err) {
+						this.server.info(`${this.device.name} initial power state set to ${this.device.state}`);
+					}
+					else {
+						this.server.error(`${this.device.name} ${err}`);
+					}
 			  });
 	  	}
 		});
